@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class User {
+  id : Long
+  email : String
+  password : String
+}
+
+class Role {
+  id : Long
+  name : String
+}
+
+class Book {
+  id : Long
+  title : String
+  description : String
+  publishedYear : Integer
+}
+
+class Author {
+  id : Long
+  name : String
+}
+
+class Genre {
+  id : Long
+  title : String
+}
+
+' ===== RELATIONSHIPS =====
+
+User "1" -- "0..*" Role : has
+User "1" -- "0..*" Book : favorites
+
+Book "1" -- "0..*" Author
+Book "1" -- "0..*" Genre
+
+@enduml
