@@ -1,0 +1,66 @@
+@startuml
+' ===== ENTITIES =====
+
+entity users {
+  id : SERIAL <<PK>>
+  email : VARCHAR
+  password : VARCHAR
+}
+
+entity roles {
+  id : SERIAL <<PK>>
+  name : VARCHAR
+}
+
+entity user_roles {
+  user_id : INT <<FK>>
+  role_id : INT <<FK>>
+}
+
+entity authors {
+  id : SERIAL <<PK>>
+  name : VARCHAR
+}
+
+entity genres {
+  id : SERIAL <<PK>>
+  title : VARCHAR
+}
+
+entity books {
+  id : SERIAL <<PK>>
+  title : VARCHAR
+  description : TEXT
+  published_year : INT
+}
+
+entity book_authors {
+  book_id : INT <<FK>>
+  author_id : INT <<FK>>
+}
+
+entity book_genres {
+  book_id : INT <<FK>>
+  genre_id : INT <<FK>>
+}
+
+entity favorites {
+  user_id : INT <<FK>>
+  book_id : INT <<FK>>
+}
+
+' ===== RELATIONSHIPS =====
+
+users ||--o{ user_roles
+roles ||--o{ user_roles
+
+books ||--o{ book_authors
+authors ||--o{ book_authors
+
+books ||--o{ book_genres
+genres ||--o{ book_genres
+
+users ||--o{ favorites
+books ||--o{ favorites
+
+@enduml
