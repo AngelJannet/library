@@ -1,0 +1,26 @@
+@startuml
+actor User
+
+participant "BookController" as Controller
+participant "FavoriteService" as Service
+participant "UserRepository" as UserRepo
+participant "BookRepository" as BookRepo
+database "PostgreSQL" as DB
+
+User -> Controller : POST /favorites/{bookId}
+Controller -> Service : addToFavorites(userId, bookId)
+
+Service -> UserRepo : findById(userId)
+UserRepo -> DB : SELECT user
+DB --> UserRepo : User
+UserRepo --> Service : User
+
+Service -> BookRepo : findById(bookId)
+BookRepo -> DB : SELECT book
+DB --> BookRepo : Book
+BookRepo --> Service : Book
+
+Service -> DB : INSERT INTO favorites
+Service --> Controller : success
+Controller --> User : 200 OK
+@enduml
