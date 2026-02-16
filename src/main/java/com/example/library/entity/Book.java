@@ -39,8 +39,21 @@ public class Book {
     protected Book() {
     }
 
+    public Book(String title, Integer publishedYear) {
+        this.title = title;
+        this.publishedYear = publishedYear;
+    }
+
+
     public Long getId() {
         return id;
     }
 
+    public void setDescription(String description) {
+    }
+
+    public void setAuthors(Set<Author> authors) {
+    }
+    public void setGenres(Set<Genre> genres) {
+    }
 }

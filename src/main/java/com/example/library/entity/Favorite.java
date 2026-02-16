@@ -22,8 +22,18 @@ public class Favorite {
     protected Favorite() {
     }
 
+    public Favorite(FavoriteId id, User user, Book book) {
+        this.id = id;
+        this.user = user;
+        this.book = book;
+    }
+
     public FavoriteId getId() {
         return id;
+    }
+
+    public Book getBook() {
+        return book;
     }
 
 }
