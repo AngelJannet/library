@@ -9,7 +9,7 @@ public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String title;
@@ -21,7 +21,7 @@ public class Genre {
         this.title = title;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

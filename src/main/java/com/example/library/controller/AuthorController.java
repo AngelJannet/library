@@ -21,9 +21,18 @@ public class AuthorController {
         return authorService.getOrCreateAuthor(name);
     }
 
-    @GetMapping
+   /* @GetMapping
     public List<Author> getAllAuthors() {
         return authorService.getAllAuthors();
+    }*/
+
+    @GetMapping
+    public List<Author> getAllAuthors() {
+        List<Author> authors = authorService.getAllAuthors();
+        // Виведе в консоль IDEA список об'єктів. Подивіться, чи там є імена!
+        authors.forEach(a -> System.out.println("Author: " + a.getId() + " Name: " + a.getName()));
+        return authors;
     }
+
 }
 

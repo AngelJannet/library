@@ -21,7 +21,7 @@ public class BookController {
                            @RequestParam(required = false) String description,
                            @RequestParam(required = false) Integer publishedYear,
                            @RequestParam Set<Long> authorIds,
-                           @RequestParam Set<Long> genreIds) {
+                           @RequestParam Set<Integer> genreIds) {
 
         return bookService.createBook(title, description, publishedYear, authorIds, genreIds);
     }

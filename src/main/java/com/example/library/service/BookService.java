@@ -29,7 +29,7 @@ public class BookService {
                            String description,
                            Integer publishedYear,
                            Set<Long> authorIds,
-                           Set<Long> genreIds) {
+                           Set<Integer> genreIds) {
 
         Set<Author> authors = authorRepository.findAllById(authorIds)
                 .stream()

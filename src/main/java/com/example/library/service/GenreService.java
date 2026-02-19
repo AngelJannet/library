@@ -4,6 +4,8 @@ import com.example.library.entity.Genre;
 import com.example.library.repository.GenreRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GenreService {
 
@@ -18,9 +20,13 @@ public class GenreService {
                 .orElseGet(() -> genreRepository.save(new Genre(title)));
     }
 
-    public Genre findById(Long id) {
+    public Genre findById(Integer id) {
         return genreRepository.findById(id)
                 .orElseThrow(() ->
                         new RuntimeException("Genre not found with id: " + id));
+    }
+
+    public List<Genre> getAllGenres() {
+        return genreRepository.findAll();
     }
 }

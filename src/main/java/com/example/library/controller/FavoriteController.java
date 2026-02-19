@@ -20,7 +20,7 @@ public class FavoriteController {
     public void addFavorite(@RequestParam Long userId,
                             @RequestParam Long bookId) {
 
-        favoriteService.addFavorite(userId, bookId);
+        favoriteService.addToFavorites(userId, bookId);
     }
 
     @GetMapping("/{userId}")
