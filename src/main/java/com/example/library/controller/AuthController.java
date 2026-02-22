@@ -1,6 +1,8 @@
 package com.example.library.controller;
 
-import com.example.library.controller.dto.*;
+import com.example.library.dto.auth.AuthResponseDto;
+import com.example.library.dto.auth.LoginRequestDto;
+import com.example.library.dto.auth.RegisterRequestDto;
 import com.example.library.entity.User;
 import com.example.library.security.JwtService;
 import com.example.library.service.UserService;
@@ -28,7 +30,7 @@ public class AuthController {
 
     // 🔹 REGISTER
     @PostMapping("/register")
-    public AuthResponse register(@RequestBody RegisterRequest request) {
+    public AuthResponseDto register(@RequestBody RegisterRequestDto request) {
 
         User user = userService.registerUser(
                 request.getFirstName(),
@@ -39,7 +41,7 @@ public class AuthController {
 
         String token = jwtService.generateToken(user.getEmail());
 
-        return new AuthResponse(
+        return new AuthResponseDto(
                 token,
                 user.getRoles()
                         .stream()
@@ -50,7 +52,7 @@ public class AuthController {
 
     // 🔹 LOGIN
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody LoginRequest request) {
+    public AuthResponseDto login(@RequestBody LoginRequestDto request) {
 
         Authentication authentication =
                 authenticationManager.authenticate(
@@ -63,7 +65,7 @@ public class AuthController {
         User user = userService.findByEmail(request.getEmail());
         String token = jwtService.generateToken(user.getEmail());
 
-        return new AuthResponse(
+        return new AuthResponseDto(
                 token,
                 user.getRoles()
                         .stream()
