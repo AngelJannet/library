@@ -1,6 +1,7 @@
 package com.example.library.entity;
 
 import jakarta.persistence.*;
+
 import java.util.Set;
 
 @Entity
@@ -44,16 +45,39 @@ public class Book {
         this.publishedYear = publishedYear;
     }
 
-
     public Long getId() {
         return id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getPublishedYear() {
+        return publishedYear;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
     public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
+
     public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
     }
 }

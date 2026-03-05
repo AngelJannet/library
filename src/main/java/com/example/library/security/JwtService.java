@@ -10,7 +10,9 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "very-secret-key-change-me";
+    // 256+ bits
+    private static final Key SECRET_KEY =
+            Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public String generateToken(String email) {
         return Jwts.builder()
@@ -19,16 +21,13 @@ public class JwtService {
                 .setExpiration(
                         new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)
                 )
-                .signWith(
-                        Keys.hmacShaKeyFor(SECRET_KEY.getBytes()),
-                        SignatureAlgorithm.HS256
-                )
+                .signWith(SECRET_KEY)
                 .compact();
     }
 
     public String extractUsername(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(SECRET_KEY.getBytes())
+                .setSigningKey(SECRET_KEY)
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
@@ -38,7 +37,7 @@ public class JwtService {
     public boolean isTokenValid(String token) {
         try {
             Jwts.parserBuilder()
-                    .setSigningKey(SECRET_KEY.getBytes())
+                    .setSigningKey(SECRET_KEY)
                     .build()
                     .parseClaimsJws(token);
             return true;
@@ -46,6 +45,4 @@ public class JwtService {
             return false;
         }
     }
-
 }
-

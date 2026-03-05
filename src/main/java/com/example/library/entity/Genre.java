@@ -1,7 +1,6 @@
 package com.example.library.entity;
 
 import jakarta.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "genres")
@@ -25,4 +24,7 @@ public class Genre {
         return id;
     }
 
+    public String getTitle() {
+        return title;
+    }
 }

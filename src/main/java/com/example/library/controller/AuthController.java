@@ -6,7 +6,9 @@ import com.example.library.dto.auth.RegisterRequestDto;
 import com.example.library.entity.User;
 import com.example.library.security.JwtService;
 import com.example.library.service.UserService;
-import org.springframework.security.authentication.*;
+import jakarta.validation.Valid;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +30,8 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // 🔹 REGISTER
     @PostMapping("/register")
-    public AuthResponseDto register(@RequestBody RegisterRequestDto request) {
+    public AuthResponseDto register(@Valid @RequestBody RegisterRequestDto request) {
 
         User user = userService.registerUser(
                 request.getFirstName(),
@@ -50,9 +51,8 @@ public class AuthController {
         );
     }
 
-    // 🔹 LOGIN
     @PostMapping("/login")
-    public AuthResponseDto login(@RequestBody LoginRequestDto request) {
+    public AuthResponseDto login(@Valid @RequestBody LoginRequestDto request) {
 
         Authentication authentication =
                 authenticationManager.authenticate(

@@ -1,18 +1,26 @@
 package com.example.library.dto.auth;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RegisterRequestDto {
 
+    @NotBlank
     private String firstName;
+
+    @NotBlank
     private String lastName;
+
+    @Email
+    @NotBlank
     private String email;
+
+    @NotBlank
     private String password;
-
-    public RegisterRequestDto() {}
-
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
-    public String getEmail() { return email; }
-    public String getPassword() { return password; }
 }
-
-

@@ -1,33 +1,23 @@
 package com.example.library.dto.book;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+
 import java.util.Set;
 
+@Data
 public class BookRequestDto {
 
+    @NotBlank
     private String title;
+
     private String description;
     private Integer publishedYear;
+
+    @NotEmpty
     private Set<Long> authorIds;
-    private Set<Long> genreIds;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Integer getPublishedYear() {
-        return publishedYear;
-    }
-
-    public Set<Long> getAuthorIds() {
-        return authorIds;
-    }
-
-    public Set<Long> getGenreIds() {
-        return genreIds;
-    }
+    @NotEmpty
+    private Set<Integer> genreIds;
 }
-
